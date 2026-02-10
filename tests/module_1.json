@@ -2125,7 +2125,7 @@
               {
                 "name": "<p style=\"text-decoration: none\">\n <span style=\"color: #000000\"><span style=\"font-family: Calibri,serif\"><span style=\"font-family: 'Cambria Math',serif\"><span style=\"font-size: 21px\">Maximum\n work is achieved in a reversible change.</span></span></span></span></p>\n ",
                 "nameText": "\n Maximum\n work is achieved in a reversible change.\n ",
-                "isCorrect": true,
+                "isCorrect": false,
                 "_id": "69873f04eec27d8796dfb401",
                 "isMarked": false
               }
@@ -2134,12 +2134,12 @@
             "hasMultipleAnswers": true,
             "type": "multiple_choice",
             "isAttempted": true,
-            "isPartiallyCorrect": true,
-            "isCorrect": false,
+            "isPartiallyCorrect": false,
+            "isCorrect": true,
             "isGraceMarked": false,
             "isReevaluated": false,
             "marks": {
-              "positive": 3,
+              "positive": 4,
               "negative": 0
             },
             "timeTaken": 147000,
