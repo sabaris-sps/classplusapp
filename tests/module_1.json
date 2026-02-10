@@ -3293,11 +3293,11 @@
             "type": "integer",
             "isAttempted": false,
             "isPartiallyCorrect": false,
-            "isCorrect": false,
+            "isCorrect": true,
             "isGraceMarked": false,
             "isReevaluated": false,
             "marks": {
-              "positive": 0,
+              "positive": 4,
               "negative": 0
             },
             "timeTaken": 53000,
