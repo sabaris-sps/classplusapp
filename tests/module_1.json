@@ -102,15 +102,15 @@
         "sectionId": "6987389e29d464035b4ee875"
       },
       {
-        "marksScored": 27,
+        "marksScored": 28,
         "sectionMarks": 40,
         "accuracy": 75,
         "_id": "698a01910e0cd05b40c0a2e5",
         "totalQuestions": 10,
         "attemptDuration": 1987000,
-        "correctAnswers": 4,
+        "correctAnswers": 5,
         "inCorrectAnswers": 0,
-        "partiallyCorrectAnswers": 5,
+        "partiallyCorrectAnswers": 4,
         "unAttempted": 1,
         "name": "Chemistry_MCQ",
         "order": 5,
@@ -166,13 +166,13 @@
         "sectionId": "69873cbe51bcf1b94f78eac5"
       },
       {
-        "marksScored": 0,
+        "marksScored": 8,
         "sectionMarks": 24,
         "accuracy": 0,
         "_id": "698a01910e0cd0c808c0a2eb",
         "totalQuestions": 6,
         "attemptDuration": 1287000,
-        "correctAnswers": 0,
+        "correctAnswers": 2,
         "inCorrectAnswers": 0,
         "partiallyCorrectAnswers": 0,
         "unAttempted": 6,
@@ -3331,11 +3331,11 @@
             "type": "integer",
             "isAttempted": false,
             "isPartiallyCorrect": false,
-            "isCorrect": false,
+            "isCorrect": true,
             "isGraceMarked": false,
             "isReevaluated": false,
             "marks": {
-              "positive": 0,
+              "positive": 4,
               "negative": 0
             },
             "timeTaken": 329000,
