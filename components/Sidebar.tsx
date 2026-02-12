@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Section, Question, SectionStats } from "../types";
 import { cn } from "../utils";
 import { Badge } from "./ui/Badge";
@@ -19,6 +19,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
   onQuestionSelect,
   starredQuestions,
 }) => {
+  const [totalScore, setTotalScore] = useState(0);
+
   // Helper to determine the status color of a question button
   const getQuestionStatusClass = (q: Question, isSelected: boolean) => {
     // Reduced size: w-7 h-7 instead of w-8 h-8
@@ -71,11 +73,24 @@ export const Sidebar: React.FC<SidebarProps> = ({
     return stat ? { scored: stat.marksScored, total: stat.sectionMarks } : null;
   };
 
+  const calculateTotalScore = () => {
+    let sum = 0;
+    sections.forEach((section) => {
+      sum += getSectionScore(section._id).scored;
+    });
+    setTotalScore(sum);
+  };
+
+  useEffect(() => {
+    calculateTotalScore();
+    return () => {};
+  }, [sections]);
+
   return (
     <aside className="w-full md:w-72 border-r border-border bg-card h-[calc(100vh-4rem)] flex-shrink-0 flex flex-col overflow-hidden">
       <div className="p-4 border-b border-border bg-muted/20">
         <h2 className="font-semibold text-sm uppercase tracking-wider text-muted-foreground mb-1">
-          Question Palette
+          Total: {totalScore}
         </h2>
       </div>
 

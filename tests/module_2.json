@@ -114,7 +114,7 @@
 				"sectionId": "698c53b8d201dc77e0b995c9"
 			},
 			{
-				"marksScored": 17,
+				"marksScored": 18,
 				"sectionMarks": 40,
 				"accuracy": 65.63,
 				"_id": "698dec86167f0c12e0ab3a47",
@@ -130,14 +130,14 @@
 				"sectionId": "698c53b09c93107c53c70a1d"
 			},
 			{
-				"marksScored": 2,
+				"marksScored": 7,
 				"sectionMarks": 24,
 				"accuracy": 33.33,
 				"_id": "698dec86167f0c2268ab3a48",
 				"totalQuestions": 6,
 				"attemptDuration": 1010000,
-				"correctAnswers": 1,
-				"inCorrectAnswers": 2,
+				"correctAnswers": 2,
+				"inCorrectAnswers": 1,
 				"partiallyCorrectAnswers": 0,
 				"unAttempted": 3,
 				"name": "Chemistry_Numerical",
@@ -146,14 +146,14 @@
 				"sectionId": "698c53c13ecc09b1aa662f1e"
 			},
 			{
-				"marksScored": 6,
+				"marksScored": 11,
 				"sectionMarks": 16,
 				"accuracy": 50,
 				"_id": "698dec86167f0c47a7ab3a4a",
 				"totalQuestions": 4,
 				"attemptDuration": 784000,
-				"correctAnswers": 2,
-				"inCorrectAnswers": 2,
+				"correctAnswers": 3,
+				"inCorrectAnswers": 1,
 				"partiallyCorrectAnswers": 0,
 				"unAttempted": 0,
 				"name": "Maths_Matrix",
@@ -162,16 +162,16 @@
 				"sectionId": "698c2c0ccf69d49afb49a0ba"
 			},
 			{
-				"marksScored": 24,
+				"marksScored": 28,
 				"sectionMarks": 40,
 				"accuracy": 72.22,
 				"_id": "698dec86167f0c7cbeab3a4b",
 				"totalQuestions": 10,
 				"attemptDuration": 2338000,
-				"correctAnswers": 6,
+				"correctAnswers": 7,
 				"inCorrectAnswers": 1,
 				"partiallyCorrectAnswers": 2,
-				"unAttempted": 1,
+				"unAttempted": 0,
 				"name": "Maths_MCQ",
 				"order": 8,
 				"sectionDuration": 0,
@@ -1201,7 +1201,7 @@
 						"questionSubmitOrder": 4,
 						"options": [
 							{
-								"nameText": 0.5
+								"nameText": 0.5,
 								"isCorrect": true,
 								"solution": 0.5,
 								"_id": "698c30d77a7158d5486f5f8b",
@@ -1217,8 +1217,8 @@
 						"isGraceMarked": false,
 						"isReevaluated": false,
 						"marks": {
-							"positive": 0,
-							"negative": 1
+							"positive": 4,
+							"negative": 0
 						},
 						"timeTaken": 247000,
 						"markForReview": true,
@@ -1610,7 +1610,7 @@
 							{
 								"name": "<p style=\"text-decoration: none;\"><span style=\"color: #000000;\"><span style=\"font-family: Calibri,serif;\"><span style=\"font-family: 'Cambria Math',serif;\"><span style=\"font-size: 21px;\">Value of&nbsp;</span></span><img src=\"https://cms-cdn.classplus.co/parserImages/0e98209f-6e67-4829-9daa-e1d324978a8e.png\" alt=\"\" width=\"27\" height=\"28\" />&nbsp;<span style=\"font-family: 'Cambria Math',serif;\"><span style=\"font-size: 21px;\">is 0.48 bar</span></span></span></span></p>",
 								"nameText": "Value of  is 0.48 bar",
-								"isCorrect": true,
+								"isCorrect": false,
 								"_id": "698d8b0a9d46a7f0ac343048",
 								"isMarked": false
 							}
@@ -1619,12 +1619,12 @@
 						"hasMultipleAnswers": true,
 						"type": "multiple_choice",
 						"isAttempted": true,
-						"isPartiallyCorrect": true,
-						"isCorrect": false,
+						"isPartiallyCorrect": false,
+						"isCorrect": true,
 						"isGraceMarked": false,
 						"isReevaluated": false,
 						"marks": {
-							"positive": 3,
+							"positive": 4,
 							"negative": 0
 						},
 						"timeTaken": 253000,
@@ -2237,7 +2237,7 @@
 								"isCorrect": true,
 								"solution": "3.95",
 								"_id": "698c6799caf5465d20b520c2",
-								"isMarked": false
+								"isMarked": true
 							}
 						],
 						"solution": "<p style=\"text-decoration: none\">\n <br>\n\n </p>\n ",
@@ -2245,12 +2245,12 @@
 						"type": "integer",
 						"isAttempted": true,
 						"isPartiallyCorrect": false,
-						"isCorrect": false,
+						"isCorrect": true,
 						"isGraceMarked": false,
 						"isReevaluated": false,
 						"marks": {
-							"positive": 0,
-							"negative": 1
+							"positive": 4,
+							"negative": 0
 						},
 						"timeTaken": 180000,
 						"markForReview": false,
@@ -2622,7 +2622,7 @@
 							{
 								"name": "<p style=\"margin-bottom: 0px; line-height: 100%; text-decoration: none\">\n <span style=\"color: #000000\"><span style=\"font-family: Calibri,serif\"><span style=\"font-family: 'Cambria Math',serif\"><span style=\"font-size: 21px\"><span lang=\"en-US\">I\n – (R)</span></span></span></span></span></p>\n ",
 								"nameText": "\n I\n – (R)\n ",
-								"isCorrect": true,
+								"isCorrect": false,
 								"_id": "698c30d77a71581dfd6f5fb3",
 								"isMarked": false
 							},
@@ -2636,7 +2636,7 @@
 							{
 								"name": "<p style=\"margin-bottom: 0px; line-height: 100%; text-decoration: none\">\n <span style=\"color: #000000\"><span style=\"font-family: Calibri,serif\"><span style=\"font-family: 'Cambria Math',serif\"><span style=\"font-size: 21px\"><span lang=\"en-US\">III\n – (T)</span></span></span></span></span></p>\n ",
 								"nameText": "\n III\n – (T)\n ",
-								"isCorrect": false,
+								"isCorrect": true,
 								"_id": "698c30d77a71589cf66f5fb5",
 								"isMarked": true
 							},
@@ -2653,12 +2653,12 @@
 						"type": "multiple_choice",
 						"isAttempted": true,
 						"isPartiallyCorrect": false,
-						"isCorrect": false,
+						"isCorrect": true,
 						"isGraceMarked": false,
 						"isReevaluated": false,
 						"marks": {
-							"positive": 0,
-							"negative": 1
+							"positive": 4,
+							"negative": 0
 						},
 						"timeTaken": 12000,
 						"markForReview": false,
@@ -2726,13 +2726,13 @@
 						"solution": "<p style=\"text-decoration: none\">\n <br>\n\n </p>\n ",
 						"hasMultipleAnswers": true,
 						"type": "multiple_choice",
-						"isAttempted": false,
+						"isAttempted": true,
 						"isPartiallyCorrect": false,
-						"isCorrect": false,
+						"isCorrect": true,
 						"isGraceMarked": false,
 						"isReevaluated": false,
 						"marks": {
-							"positive": 0,
+							"positive": 4,
 							"negative": 0
 						},
 						"timeTaken": 84000,
