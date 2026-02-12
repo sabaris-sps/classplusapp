@@ -3,7 +3,7 @@ import { TopBar } from "./components/TopBar";
 import { Sidebar } from "./components/Sidebar";
 import { QuestionView } from "./components/QuestionView";
 import { TESTS, MOCK_TEST_DATA } from "./constants";
-import { TestData, Question } from "./types";
+import { TestData, Question, Section, SectionStats } from "./types";
 
 const App: React.FC = () => {
   const [currentTestId, setCurrentTestId] = useState(TESTS[0].id);
@@ -87,33 +87,106 @@ const App: React.FC = () => {
   const handleZoomOut = () => setZoomLevel((prev) => Math.max(prev - 0.1, 0.5));
 
   // Find current question object and navigation logic
-  const { currentQuestion, nextQuestionId, prevQuestionId } =
-    React.useMemo(() => {
-      if (!testData || !selectedQuestionId)
-        return {
-          currentQuestion: null,
-          nextQuestionId: null,
-          prevQuestionId: null,
-        };
+  const {
+    currentQuestion,
+    nextQuestionId,
+    prevQuestionId,
+    currentSectionStats,
+  } = React.useMemo(() => {
+    if (!testData || !selectedQuestionId)
+      return {
+        currentQuestion: null,
+        nextQuestionId: null,
+        prevQuestionId: null,
+        currentSectionStats: null,
+      };
 
-      // Flatten all questions to linearize navigation
-      const allQuestions: Question[] = [];
-      testData.data.sections.forEach((s) => allQuestions.push(...s.questions));
+    // Flatten all questions to linearize navigation
+    const allQuestions: Question[] = [];
+    testData.data.sections.forEach((s) => allQuestions.push(...s.questions));
 
-      const currentIndex = allQuestions.findIndex(
-        (q) => q._id === selectedQuestionId,
+    const currentIndex = allQuestions.findIndex(
+      (q) => q._id === selectedQuestionId,
+    );
+    const currentQuestion = allQuestions[currentIndex] || null;
+
+    const nextQuestionId =
+      currentIndex < allQuestions.length - 1
+        ? allQuestions[currentIndex + 1]._id
+        : null;
+    const prevQuestionId =
+      currentIndex > 0 ? allQuestions[currentIndex - 1]._id : null;
+
+    // Find section stats
+    let currentSectionStats: SectionStats | null = null;
+    if (currentQuestion && testData.data.sectionWiseStats) {
+      currentSectionStats =
+        testData.data.sectionWiseStats.find(
+          (s) => s.sectionId === currentQuestion.sectionId,
+        ) || null;
+    }
+
+    return {
+      currentQuestion,
+      nextQuestionId,
+      prevQuestionId,
+      currentSectionStats,
+    };
+  }, [testData, selectedQuestionId]);
+
+  // Handle Data Update (Key Change)
+  const handleDataUpdate = (
+    updatedQuestion: Question,
+    updatedSectionStats: SectionStats | null,
+  ) => {
+    if (!testData) return;
+
+    // Create a deep copy
+    const newData = JSON.parse(JSON.stringify(testData));
+
+    // Update Question
+    // Find the section that contains this question
+    // We assume updatedQuestion.sectionId is correct.
+    const sectionIndex = newData.data.sections.findIndex(
+      (s: Section) => s._id === updatedQuestion.sectionId,
+    );
+    if (sectionIndex !== -1) {
+      const qIndex = newData.data.sections[sectionIndex].questions.findIndex(
+        (q: Question) => q._id === updatedQuestion._id,
       );
-      const currentQuestion = allQuestions[currentIndex] || null;
+      if (qIndex !== -1) {
+        newData.data.sections[sectionIndex].questions[qIndex] = updatedQuestion;
+      }
+    }
 
-      const nextQuestionId =
-        currentIndex < allQuestions.length - 1
-          ? allQuestions[currentIndex + 1]._id
-          : null;
-      const prevQuestionId =
-        currentIndex > 0 ? allQuestions[currentIndex - 1]._id : null;
+    // Update Stats
+    if (updatedSectionStats && newData.data.sectionWiseStats) {
+      const statIndex = newData.data.sectionWiseStats.findIndex(
+        (s: SectionStats) => s.sectionId === updatedSectionStats.sectionId,
+      );
+      if (statIndex !== -1) {
+        newData.data.sectionWiseStats[statIndex] = updatedSectionStats;
+      }
+    }
 
-      return { currentQuestion, nextQuestionId, prevQuestionId };
-    }, [testData, selectedQuestionId]);
+    setTestData(newData);
+
+    // Export complete new JSON
+    const fileName =
+      TESTS.find((t) => t.id === currentTestId)?.fileName ||
+      "updated_test_data.json";
+    const blob = new Blob([JSON.stringify(newData, null, 2)], {
+      type: "application/json",
+    });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "updated-" + fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
 
   if (!testData) {
     return (
@@ -166,6 +239,8 @@ const App: React.FC = () => {
               }
               hasNext={!!nextQuestionId}
               hasPrev={!!prevQuestionId}
+              sectionStats={currentSectionStats}
+              onUpdateData={handleDataUpdate}
             />
           ) : (
             <div className="flex items-center justify-center h-full text-muted-foreground">

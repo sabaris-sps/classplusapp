@@ -1,8 +1,9 @@
-import React from "react";
-import { Question, Option } from "../types";
+import React, { useState, useEffect } from "react";
+import { Question, Option, SectionStats } from "../types";
 import { cn, formatTime } from "../utils";
 import { Badge } from "./ui/Badge";
 import { Button } from "./ui/Button";
+import { Dialog } from "./ui/Dialog";
 import {
   Clock,
   CheckCircle2,
@@ -14,6 +15,8 @@ import {
   ZoomOut,
   ChevronLeft,
   ChevronRight,
+  FileJson,
+  Save,
 } from "lucide-react";
 
 interface QuestionViewProps {
@@ -27,6 +30,8 @@ interface QuestionViewProps {
   onPrev?: () => void;
   hasPrev: boolean;
   hasNext: boolean;
+  sectionStats: SectionStats | null;
+  onUpdateData: (question: Question, sectionStats: SectionStats | null) => void;
 }
 
 export const QuestionView: React.FC<QuestionViewProps> = ({
@@ -40,9 +45,43 @@ export const QuestionView: React.FC<QuestionViewProps> = ({
   onPrev,
   hasPrev,
   hasNext,
+  sectionStats,
+  onUpdateData,
 }) => {
   // Determine user's selected option (if any)
   const userSelectedOption = question.options.find((opt) => opt.isMarked);
+
+  // Dialog State
+  const [isUpdateOpen, setIsUpdateOpen] = useState(false);
+  const [jsonQuestion, setJsonQuestion] = useState("");
+  const [jsonStats, setJsonStats] = useState("");
+  const [jsonError, setJsonError] = useState<string | null>(null);
+
+  // Load JSON when dialog opens
+  useEffect(() => {
+    if (isUpdateOpen) {
+      setJsonQuestion(JSON.stringify(question, null, 2));
+      setJsonStats(sectionStats ? JSON.stringify(sectionStats, null, 2) : "");
+      setJsonError(null);
+    }
+  }, [isUpdateOpen, question, sectionStats]);
+
+  const handleSaveJson = () => {
+    try {
+      const parsedQuestion = JSON.parse(jsonQuestion);
+      const parsedStats = jsonStats.trim() ? JSON.parse(jsonStats) : null;
+
+      // Basic validation
+      if (!parsedQuestion._id || !parsedQuestion.type) {
+        throw new Error("Invalid Question JSON structure");
+      }
+
+      onUpdateData(parsedQuestion, parsedStats);
+      setIsUpdateOpen(false);
+    } catch (e: any) {
+      setJsonError(e.message || "Invalid JSON");
+    }
+  };
 
   // Helper to style options based on state
   const getOptionClass = (opt: Option) => {
@@ -122,6 +161,16 @@ export const QuestionView: React.FC<QuestionViewProps> = ({
               {isStarred ? "Starred" : "Star Question"}
             </span>
           </Button>
+
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setIsUpdateOpen(true)}
+            className="ml-1 gap-1.5 text-muted-foreground hover:text-primary"
+          >
+            <FileJson className="w-4 h-4" />
+            <span className="text-xs font-semibold">Update Key</span>
+          </Button>
         </div>
 
         <div className="flex items-center gap-4 text-sm ml-auto">
@@ -159,7 +208,7 @@ export const QuestionView: React.FC<QuestionViewProps> = ({
 
           <div className="bg-secondary/50 rounded-md px-3 py-1.5 flex flex-col items-end border border-border">
             <span className="text-[10px] text-muted-foreground font-bold uppercase">
-              Marks+
+              Marks
             </span>
             <div className="flex items-center gap-1 text-sm font-semibold">
               <span className="text-emerald-600 dark:text-emerald-400">
@@ -333,6 +382,67 @@ export const QuestionView: React.FC<QuestionViewProps> = ({
           Next <ChevronRight className="w-4 h-4" />
         </Button>
       </div>
+
+      {/* Key Update Dialog */}
+      <Dialog
+        isOpen={isUpdateOpen}
+        onClose={() => setIsUpdateOpen(false)}
+        title="Update Question Data"
+      >
+        <div className="space-y-6">
+          <div className="space-y-2">
+            <label className="text-sm font-medium flex items-center gap-2">
+              Question JSON
+              <span className="text-xs text-muted-foreground font-normal">
+                (Edit variables, answer keys, etc.)
+              </span>
+            </label>
+            <textarea
+              value={jsonQuestion}
+              onChange={(e) => setJsonQuestion(e.target.value)}
+              className="w-full h-96 font-mono text-sm p-4 rounded-md border border-input bg-muted/50 focus:ring-2 focus:ring-primary focus:outline-none"
+              spellCheck={false}
+            />
+          </div>
+
+          <div className="space-y-2">
+            <label className="text-sm font-medium flex items-center gap-2">
+              Section Stats JSON
+              <span className="text-xs text-muted-foreground font-normal">
+                (Update section totals if marks changed)
+              </span>
+            </label>
+            {sectionStats ? (
+              <textarea
+                value={jsonStats}
+                onChange={(e) => setJsonStats(e.target.value)}
+                className="w-full h-48 font-mono text-sm p-4 rounded-md border border-input bg-muted/50 focus:ring-2 focus:ring-primary focus:outline-none"
+                spellCheck={false}
+              />
+            ) : (
+              <div className="p-4 border border-dashed rounded-md text-muted-foreground text-sm">
+                No section stats available for this question's section.
+              </div>
+            )}
+          </div>
+
+          {jsonError && (
+            <div className="p-3 bg-destructive/10 text-destructive text-sm rounded-md flex items-center gap-2">
+              <AlertCircle className="w-4 h-4" />
+              {jsonError}
+            </div>
+          )}
+
+          <div className="flex justify-end gap-3 pt-4 border-t border-border">
+            <Button variant="ghost" onClick={() => setIsUpdateOpen(false)}>
+              Cancel
+            </Button>
+            <Button onClick={handleSaveJson} className="gap-2">
+              <Save className="w-4 h-4" /> Update & Export
+            </Button>
+          </div>
+        </div>
+      </Dialog>
     </div>
   );
 };
