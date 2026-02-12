@@ -82,7 +82,7 @@
 				"sectionId": "698c29a0112bdb56f108cb19"
 			},
 			{
-				"marksScored": 14,
+				"marksScored": 19,
 				"sectionMarks": 24,
 				"accuracy": 66.67,
 				"_id": "698dec86167f0c65ccab3a45",
@@ -1201,11 +1201,11 @@
 						"questionSubmitOrder": 4,
 						"options": [
 							{
-								"nameText": 2,
+								"nameText": 0.5
 								"isCorrect": true,
-								"solution": 2,
+								"solution": 0.5,
 								"_id": "698c30d77a7158d5486f5f8b",
-								"isMarked": false
+								"isMarked": true
 							}
 						],
 						"solution": "<p style=\"text-decoration: none\">\n <br>\n\n </p>\n ",
@@ -1213,7 +1213,7 @@
 						"type": "integer",
 						"isAttempted": true,
 						"isPartiallyCorrect": false,
-						"isCorrect": false,
+						"isCorrect": true,
 						"isGraceMarked": false,
 						"isReevaluated": false,
 						"marks": {
