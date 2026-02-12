@@ -118,13 +118,13 @@
         "sectionId": "6987396165576e9d4724899b"
       },
       {
-        "marksScored": 4,
+        "marksScored": 8,
         "sectionMarks": 24,
         "accuracy": 100,
         "_id": "698a01910e0cd02cc6c0a2e9",
         "totalQuestions": 6,
         "attemptDuration": 450000,
-        "correctAnswers": 1,
+        "correctAnswers": 2,
         "inCorrectAnswers": 0,
         "partiallyCorrectAnswers": 0,
         "unAttempted": 5,
@@ -2381,11 +2381,11 @@
             "type": "integer",
             "isAttempted": false,
             "isPartiallyCorrect": false,
-            "isCorrect": false,
+            "isCorrect": true,
             "isGraceMarked": false,
             "isReevaluated": false,
             "marks": {
-              "positive": 0,
+              "positive": 4,
               "negative": 0
             },
             "timeTaken": 63000,
