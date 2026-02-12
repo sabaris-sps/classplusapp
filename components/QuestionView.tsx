@@ -241,49 +241,57 @@ export const QuestionView: React.FC<QuestionViewProps> = ({
             ) : (
               <div className="bg-card border border-border rounded-lg p-6 flex flex-col gap-4">
                 {/* Integer Type Display */}
-                {question.options.map((opt) => (
-                  <div key={opt._id} className="space-y-4">
-                    <div className="flex items-center gap-4">
-                      <div className="flex-1 p-4 bg-secondary/30 rounded-md border border-border">
-                        <span className="text-xs text-muted-foreground uppercase font-bold block mb-1">
-                          Correct Answer
-                        </span>
-                        <span className="text-xl font-mono font-bold text-emerald-600 dark:text-emerald-400">
-                          {opt.solution || opt.nameText}
-                        </span>
-                      </div>
+                <div className="space-y-4">
+                  <div className="flex items-center gap-4">
+                    <div className="flex-1 p-4 bg-secondary/30 rounded-md border border-border">
+                      <span className="text-xs text-muted-foreground uppercase font-bold block mb-1">
+                        Correct Answer
+                      </span>
+                      <span className="text-xl font-mono font-bold text-emerald-600 dark:text-emerald-400">
+                        {question.options[0].solution ||
+                          question.options[0].nameText ||
+                          "--"}
+                      </span>
+                    </div>
 
-                      <div className="flex-1 p-4 bg-secondary/30 rounded-md border border-border relative">
-                        <span className="text-xs text-muted-foreground uppercase font-bold block mb-1">
-                          Your Answer
-                        </span>
-                        <span
-                          className={cn(
-                            "text-xl font-mono font-bold",
-                            opt.isMarked && opt.isCorrect
-                              ? "text-emerald-600 dark:text-emerald-400"
-                              : "text-rose-600 dark:text-rose-400",
-                          )}
-                        >
-                          {/* Logic to show user answer if marked, else unattempted */}
-                          {opt.isMarked ? opt.nameText : "--"}
-                        </span>
-                        {opt.isMarked && (
-                          <div className="absolute top-2 right-2">
-                            <Badge
-                              variant={
-                                opt.isCorrect ? "success" : "destructive"
-                              }
-                              className="text-[10px] px-1.5 h-5"
-                            >
-                              {opt.isCorrect ? "Correct" : "Wrong"}
-                            </Badge>
-                          </div>
+                    <div className="flex-1 p-4 bg-secondary/30 rounded-md border border-border relative">
+                      <span className="text-xs text-muted-foreground uppercase font-bold block mb-1">
+                        Your Answer
+                      </span>
+                      <span
+                        className={cn(
+                          "text-xl font-mono font-bold",
+                          question.options[0].isMarked && question.isCorrect
+                            ? "text-emerald-600 dark:text-emerald-400"
+                            : question.isAttempted
+                              ? "text-rose-600 dark:text-rose-400"
+                              : "text-yellow-600 dark:text-yellow-400",
                         )}
-                      </div>
+                      >
+                        {/* Logic to show user answer if marked, else unattempted */}
+                        {question.fillUpsAnswers
+                          ? question.fillUpsAnswers[0] || "Not attempted"
+                          : "--"}
+                      </span>
+                      {question.options[0].isMarked && (
+                        <div className="absolute top-2 right-2">
+                          <Badge
+                            variant={
+                              question.options[0].isCorrect
+                                ? "success"
+                                : "destructive"
+                            }
+                            className="text-[10px] px-1.5 h-5"
+                          >
+                            {question.options[0].isCorrect
+                              ? "Correct"
+                              : "Wrong"}
+                          </Badge>
+                        </div>
+                      )}
                     </div>
                   </div>
-                ))}
+                </div>
               </div>
             )}
           </div>
