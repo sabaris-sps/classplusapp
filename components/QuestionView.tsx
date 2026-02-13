@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Question, Option, SectionStats } from "../types";
 import { cn, formatTime } from "../utils";
 import { Badge } from "./ui/Badge";
@@ -17,10 +17,14 @@ import {
   ChevronRight,
   FileJson,
   Save,
+  Copy,
+  Check,
+  Loader2,
 } from "lucide-react";
 
 interface QuestionViewProps {
   question: Question;
+  sectionName: string;
   isStarred: boolean;
   onToggleStar: () => void;
   zoomLevel: number;
@@ -36,6 +40,7 @@ interface QuestionViewProps {
 
 export const QuestionView: React.FC<QuestionViewProps> = ({
   question,
+  sectionName,
   isStarred,
   onToggleStar,
   zoomLevel,
@@ -50,12 +55,17 @@ export const QuestionView: React.FC<QuestionViewProps> = ({
 }) => {
   // Determine user's selected option (if any)
   const userSelectedOption = question.options.find((opt) => opt.isMarked);
+  const questionContentRef = useRef<HTMLDivElement>(null);
 
   // Dialog State
   const [isUpdateOpen, setIsUpdateOpen] = useState(false);
   const [jsonQuestion, setJsonQuestion] = useState("");
   const [jsonStats, setJsonStats] = useState("");
   const [jsonError, setJsonError] = useState<string | null>(null);
+
+  // Copy State
+  const [isCopying, setIsCopying] = useState(false);
+  const [isCopied, setIsCopied] = useState(false);
 
   // Load JSON when dialog opens
   useEffect(() => {
@@ -80,6 +90,90 @@ export const QuestionView: React.FC<QuestionViewProps> = ({
       setIsUpdateOpen(false);
     } catch (e: any) {
       setJsonError(e.message || "Invalid JSON");
+    }
+  };
+
+  const handleCopyQuestion = async () => {
+    if (!questionContentRef.current || isCopying) return;
+
+    setIsCopying(true);
+    try {
+      // @ts-ignore - html2canvas is loaded via CDN in index.html
+      if (typeof window.html2canvas === "undefined") {
+        console.error("html2canvas not loaded");
+        setIsCopying(false);
+        return;
+      }
+
+      const isDark = document.documentElement.classList.contains("dark");
+
+      // @ts-ignore
+      const canvas = await window.html2canvas(questionContentRef.current, {
+        useCORS: true,
+        backgroundColor: isDark ? "#020617" : "#ffffff", // Explicit background color
+        scale: 2, // Higher quality
+        logging: false,
+        onclone: (clonedDoc: Document) => {
+          // CRITICAL FIX: Apply dark class to cloned document root if active in real DOM
+          // This ensures CSS variables and dark mode overrides apply correctly in the capture
+          if (isDark) {
+            clonedDoc.documentElement.classList.add("dark");
+          }
+
+          const clonedContent = clonedDoc.querySelector(
+            '[data-question-content="true"]',
+          );
+          if (clonedContent) {
+            const header = clonedDoc.createElement("div");
+            header.style.marginBottom = "20px";
+            header.style.paddingBottom = "10px";
+            header.style.borderBottom = isDark
+              ? "1px solid #1e293b"
+              : "1px solid #e2e8f0";
+            header.style.display = "flex";
+            header.style.justifyContent = "space-between";
+            header.style.alignItems = "center";
+            header.style.fontFamily = "ui-sans-serif, system-ui, sans-serif";
+
+            const title = clonedDoc.createElement("span");
+            title.innerText = `${sectionName} • Q${question.order}`;
+            title.style.fontSize = "14px";
+            title.style.fontWeight = "600";
+            title.style.color = isDark ? "#94a3b8" : "#64748b";
+            title.style.textTransform = "uppercase";
+            title.style.letterSpacing = "0.05em";
+
+            const branding = clonedDoc.createElement("span");
+            branding.innerText = "";
+            branding.style.fontSize = "11px";
+            branding.style.color = isDark ? "#475569" : "#94a3b8";
+            branding.style.fontWeight = "500";
+
+            header.appendChild(title);
+            header.appendChild(branding);
+
+            clonedContent.insertBefore(header, clonedContent.firstChild);
+          }
+        },
+      });
+
+      canvas.toBlob((blob: Blob | null) => {
+        if (blob) {
+          navigator.clipboard
+            .write([new ClipboardItem({ "image/png": blob })])
+            .then(() => {
+              setIsCopied(true);
+              setTimeout(() => setIsCopied(false), 2000);
+            })
+            .catch((err) => {
+              console.error("Failed to write to clipboard", err);
+            });
+        }
+        setIsCopying(false);
+      }, "image/png");
+    } catch (error) {
+      console.error("Screenshot failed:", error);
+      setIsCopying(false);
     }
   };
 
@@ -171,6 +265,30 @@ export const QuestionView: React.FC<QuestionViewProps> = ({
             <FileJson className="w-4 h-4" />
             <span className="text-xs font-semibold">Update Key</span>
           </Button>
+
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={handleCopyQuestion}
+            disabled={isCopying}
+            className={cn(
+              "ml-1 gap-1.5 transition-colors",
+              isCopied
+                ? "text-emerald-500 hover:text-emerald-600"
+                : "text-muted-foreground hover:text-primary",
+            )}
+          >
+            {isCopying ? (
+              <Loader2 className="w-4 h-4 animate-spin" />
+            ) : isCopied ? (
+              <Check className="w-4 h-4" />
+            ) : (
+              <Copy className="w-4 h-4" />
+            )}
+            <span className="text-xs font-semibold">
+              {isCopied ? "Copied" : "Copy"}
+            </span>
+          </Button>
         </div>
 
         <div className="flex items-center gap-4 text-sm ml-auto">
@@ -225,9 +343,11 @@ export const QuestionView: React.FC<QuestionViewProps> = ({
 
       {/* Scrollable Content */}
       <div className="flex-1 overflow-y-auto p-4 md:p-8 w-full pb-20">
-        {/* Container for zooming */}
+        {/* Container for zooming and capturing */}
         <div
-          className="max-w-5xl mx-auto origin-top-left transition-all duration-200"
+          ref={questionContentRef}
+          data-question-content="true"
+          className="max-w-5xl mx-auto origin-top-left transition-all duration-200 p-4 rounded-lg bg-background"
           style={{
             // Using zoom property for best browser compatibility with "text and image" scaling simultaneously
             // Although non-standard, it is effective for this specific "A+/A-" requirement on mixed content.

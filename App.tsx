@@ -92,6 +92,7 @@ const App: React.FC = () => {
     nextQuestionId,
     prevQuestionId,
     currentSectionStats,
+    currentSectionName,
   } = React.useMemo(() => {
     if (!testData || !selectedQuestionId)
       return {
@@ -99,6 +100,7 @@ const App: React.FC = () => {
         nextQuestionId: null,
         prevQuestionId: null,
         currentSectionStats: null,
+        currentSectionName: "",
       };
 
     // Flatten all questions to linearize navigation
@@ -126,11 +128,18 @@ const App: React.FC = () => {
         ) || null;
     }
 
+    // Find section name
+    const currentSection = testData.data.sections.find(
+      (s) => s._id === currentQuestion?.sectionId,
+    );
+    const currentSectionName = currentSection ? currentSection.name : "";
+
     return {
       currentQuestion,
       nextQuestionId,
       prevQuestionId,
       currentSectionStats,
+      currentSectionName,
     };
   }, [testData, selectedQuestionId]);
 
@@ -222,6 +231,7 @@ const App: React.FC = () => {
           {currentQuestion ? (
             <QuestionView
               question={currentQuestion}
+              sectionName={currentSectionName}
               isStarred={starredQuestions.has(currentQuestion._id)}
               onToggleStar={handleToggleStar}
               zoomLevel={zoomLevel}
