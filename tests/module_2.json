@@ -1215,7 +1215,7 @@
 						"isPartiallyCorrect": false,
 						"isCorrect": true,
 						"isGraceMarked": false,
-						"isReevaluated": false,
+						"isReevaluated": true,
 						"marks": {
 							"positive": 4,
 							"negative": 0
@@ -1622,7 +1622,7 @@
 						"isPartiallyCorrect": false,
 						"isCorrect": true,
 						"isGraceMarked": false,
-						"isReevaluated": false,
+						"isReevaluated": true,
 						"marks": {
 							"positive": 4,
 							"negative": 0
@@ -2247,7 +2247,7 @@
 						"isPartiallyCorrect": false,
 						"isCorrect": true,
 						"isGraceMarked": false,
-						"isReevaluated": false,
+						"isReevaluated": true,
 						"marks": {
 							"positive": 4,
 							"negative": 0
@@ -2655,7 +2655,7 @@
 						"isPartiallyCorrect": false,
 						"isCorrect": true,
 						"isGraceMarked": false,
-						"isReevaluated": false,
+						"isReevaluated": true,
 						"marks": {
 							"positive": 4,
 							"negative": 0
@@ -2729,8 +2729,8 @@
 						"isAttempted": true,
 						"isPartiallyCorrect": false,
 						"isCorrect": true,
-						"isGraceMarked": false,
-						"isReevaluated": false,
+						"isGraceMarked": true,
+						"isReevaluated": true,
 						"marks": {
 							"positive": 4,
 							"negative": 0
