@@ -54,7 +54,7 @@
         "sectionId": "698f010914c08234c99d05f0"
       },
       {
-        "marksScored": 24,
+        "marksScored": 36,
         "sectionMarks": 36,
         "accuracy": 77.78,
         "_id": "69905e7bc0d78c831f15fc26",
@@ -102,7 +102,7 @@
         "sectionId": "698f22f63c9d2c885b850ecc"
       },
       {
-        "marksScored": 33,
+        "marksScored": 39,
         "sectionMarks": 40,
         "accuracy": 87.5,
         "_id": "69905e7bc0d78c66ea15fc29",
@@ -150,7 +150,7 @@
         "sectionId": "698f170b555e693d8ccba97c"
       },
       {
-        "marksScored": 30,
+        "marksScored": 33,
         "sectionMarks": 36,
         "accuracy": 83.33,
         "_id": "69905e7bc0d78c44c415fc2c",
@@ -595,14 +595,14 @@
               {
                 "name": "<p style=\"text-decoration: none;\"><span style=\"color: #000000;\"><span style=\"font-family: Calibri,serif;\"><span style=\"font-family: 'Cambria Math',serif;\"><span style=\"font-size: 21px;\">The distance covered by the sledge on the road is </span></span> <img src=\"https://cms-cdn.classplus.co/parserImages/production/760852_1770979840986.gif\" width=\"78\" height=\"55\" align=\"absmiddle\" /> <span style=\"font-family: 'Cambria Math',serif;\"><span style=\"font-size: 21px;\">.</span></span></span></span></p>",
                 "nameText": "The distance covered by the sledge on the road is   .",
-                "isCorrect": false,
+                "isCorrect": true,
                 "_id": "698f03a653c2917b552ed58c",
                 "isMarked": true
               },
               {
                 "name": "<p style=\"text-decoration: none;\"><span style=\"color: #000000;\"><span style=\"font-family: Calibri,serif;\"><span style=\"font-family: 'Cambria Math',serif;\"><span style=\"font-size: 21px;\">Total distance moved by the sledge before stopping is </span></span> <img src=\"https://cms-cdn.classplus.co/parserImages/production/655003_1770979841048.gif\" width=\"79\" height=\"53\" align=\"absmiddle\" /> </span></span></p>",
                 "nameText": "Total distance moved by the sledge before stopping is   ",
-                "isCorrect": false,
+                "isCorrect": true,
                 "_id": "698f03a653c291e3c52ed58d",
                 "isMarked": true
               }
@@ -612,12 +612,12 @@
             "type": "multiple_choice",
             "isAttempted": true,
             "isPartiallyCorrect": false,
-            "isCorrect": false,
+            "isCorrect": true,
             "isGraceMarked": false,
-            "isReevaluated": false,
+            "isReevaluated": true,
             "marks": {
-              "positive": 0,
-              "negative": 2
+              "positive": 4,
+              "negative": 0
             },
             "timeTaken": 197000,
             "markForReview": false,
@@ -876,7 +876,7 @@
               {
                 "name": "<p style=\"text-decoration: none;\"><img src=\"https://cms-cdn.classplus.co/parserImages/cecb6b19-5391-474c-a8ec-e8111db33b68.png\" alt=\"\" width=\"86\" height=\"32\" /></p>",
                 "nameText": "",
-                "isCorrect": false,
+                "isCorrect": true,
                 "_id": "698f03a653c2913a5c2ed58e",
                 "isMarked": true
               },
@@ -907,12 +907,12 @@
             "type": "multiple_choice",
             "isAttempted": true,
             "isPartiallyCorrect": false,
-            "isCorrect": false,
+            "isCorrect": true,
             "isGraceMarked": false,
-            "isReevaluated": false,
+            "isReevaluated": true,
             "marks": {
-              "positive": 0,
-              "negative": 2
+              "positive": 4,
+              "negative": 0
             },
             "timeTaken": 133000,
             "markForReview": true,
@@ -2087,7 +2087,7 @@
               {
                 "name": "<p style=\"text-decoration: none\">\n <span style=\"color: #000000\"><span style=\"font-family: Calibri,serif\"><span style=\"font-family: 'Cambria Math',serif\"><span style=\"font-size: 21px\">5\n electrons in acidic medium</span></span></span></span></p>\n ",
                 "nameText": "\n 5\n electrons in acidic medium\n ",
-                "isCorrect": false,
+                "isCorrect": true,
                 "_id": "698f28a33cb0b46c3623394f",
                 "isMarked": true
               }
@@ -2097,12 +2097,12 @@
             "type": "multiple_choice",
             "isAttempted": true,
             "isPartiallyCorrect": false,
-            "isCorrect": false,
+            "isCorrect": true,
             "isGraceMarked": false,
-            "isReevaluated": false,
+            "isReevaluated": true,
             "marks": {
-              "positive": 0,
-              "negative": 2
+              "positive": 4,
+              "negative": 0
             },
             "timeTaken": 38000,
             "markForReview": true,
@@ -3151,12 +3151,12 @@
             "hasMultipleAnswers": true,
             "type": "multiple_choice",
             "isAttempted": true,
-            "isPartiallyCorrect": true,
-            "isCorrect": false,
-            "isGraceMarked": false,
-            "isReevaluated": false,
+            "isPartiallyCorrect": false,
+            "isCorrect": true,
+            "isGraceMarked": true,
+            "isReevaluated": true,
             "marks": {
-              "positive": 1,
+              "positive": 4,
               "negative": 0
             },
             "timeTaken": 455000,
