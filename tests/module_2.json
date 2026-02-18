@@ -114,7 +114,7 @@
 				"sectionId": "698c53b8d201dc77e0b995c9"
 			},
 			{
-				"marksScored": 18,
+				"marksScored": 30,
 				"sectionMarks": 40,
 				"accuracy": 65.63,
 				"_id": "698dec86167f0c12e0ab3a47",
@@ -2009,7 +2009,7 @@
 							{
 								"name": "<p style=\"text-decoration: none;\"><span style=\"color: #000000;\"><img src=\"https://cms-cdn.classplus.co/parserImages/production/989278_1770883288401.gif\" width=\"71\" height=\"46\" align=\"absmiddle\" /> </span></p>",
 								"nameText": " ",
-								"isCorrect": true,
+								"isCorrect": false,
 								"_id": "698d8b0a9d46a7ea4334304e",
 								"isMarked": false
 							},
@@ -2023,7 +2023,7 @@
 							{
 								"name": "<p style=\"text-decoration: none;\"><span style=\"color: #000000;\"><img src=\"https://cms-cdn.classplus.co/parserImages/production/511919_1770883288532.gif\" width=\"82\" height=\"23\" align=\"absmiddle\" /> </span></p>",
 								"nameText": " ",
-								"isCorrect": true,
+								"isCorrect": false,
 								"_id": "698d8b0a9d46a71795343050",
 								"isMarked": false
 							}
@@ -2032,12 +2032,12 @@
 						"hasMultipleAnswers": true,
 						"type": "multiple_choice",
 						"isAttempted": true,
-						"isPartiallyCorrect": true,
-						"isCorrect": false,
+						"isPartiallyCorrect": false,
+						"isCorrect": true,
 						"isGraceMarked": false,
-						"isReevaluated": false,
+						"isReevaluated": true,
 						"marks": {
-							"positive": 2,
+							"positive": 4,
 							"negative": 0
 						},
 						"timeTaken": 90000,
@@ -2082,7 +2082,7 @@
 							{
 								"name": "<p style=\"text-decoration: none\">\n <span style=\"color: #000000\"><span style=\"font-family: Calibri,serif\"><span style=\"font-family: 'Cambria Math',serif\"><span style=\"font-size: 21px\">Percentage\n of unionised HA molecules is approximately </span></span>\n <img src=\"https://cms-cdn.classplus.co/parserImages/production/400963_1770883289026.gif\" align=\"absmiddle\">\n<span style=\"font-family: 'Cambria Math',serif\"><span style=\"font-size: 21px\">.</span></span></img></span></span></p>\n ",
 								"nameText": "\n Percentage\n of unionised HA molecules is approximately \n \n.\n ",
-								"isCorrect": false,
+								"isCorrect": true,
 								"_id": "698d8b0a9d46a75ceb343034",
 								"isMarked": true
 							}
@@ -2091,13 +2091,13 @@
 						"hasMultipleAnswers": true,
 						"type": "multiple_choice",
 						"isAttempted": true,
-						"isPartiallyCorrect": false,
+						"isPartiallyCorrect": true,
 						"isCorrect": false,
 						"isGraceMarked": false,
-						"isReevaluated": false,
+						"isReevaluated": true,
 						"marks": {
-							"positive": 0,
-							"negative": 2
+							"positive": 2,
+							"negative": 0
 						},
 						"timeTaken": 184000,
 						"markForReview": false,
@@ -2134,7 +2134,7 @@
 							{
 								"name": "<p style=\"margin-bottom: 0px; text-decoration: none;\"><img src=\"https://cms-cdn.classplus.co/parserImages/5e14880c-d63f-4d02-8605-28c50c97123a.png\" alt=\"\" width=\"497\" height=\"51\" /></p>",
 								"nameText": "",
-								"isCorrect": false,
+								"isCorrect": true,
 								"_id": "698d8b0a9d46a7bc5c34303b",
 								"isMarked": true
 							},
@@ -2151,12 +2151,12 @@
 						"type": "multiple_choice",
 						"isAttempted": true,
 						"isPartiallyCorrect": false,
-						"isCorrect": false,
+						"isCorrect": true,
 						"isGraceMarked": false,
-						"isReevaluated": false,
+						"isReevaluated": true,
 						"marks": {
-							"positive": 0,
-							"negative": 2
+							"positive": 4,
+							"negative": 0
 						},
 						"timeTaken": 170000,
 						"markForReview": false,
