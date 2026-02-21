@@ -6,7 +6,9 @@ import { TESTS, MOCK_TEST_DATA } from "./constants";
 import { TestData, Question, Section, SectionStats } from "./types";
 
 const App: React.FC = () => {
-  const [currentTestId, setCurrentTestId] = useState(TESTS[0].id);
+  const [currentTestId, setCurrentTestId] = useState(
+    TESTS[TESTS.length - 1].id,
+  );
   const [testData, setTestData] = useState<TestData | null>(null);
   const [selectedQuestionId, setSelectedQuestionId] = useState<string | null>(
     null,
