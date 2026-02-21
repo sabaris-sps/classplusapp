@@ -358,6 +358,12 @@ export const QuestionView: React.FC<QuestionViewProps> = ({
         >
           {/* Question Text */}
           <div className="prose dark:prose-invert max-w-none mb-8">
+            {question.isComprehension === true && (
+              <div
+                className="text-lg leading-relaxed text-foreground [&>img]:max-w-full [&>img]:rounded-lg [&>img]:border [&>img]:border-border [&>p]:mb-4"
+                dangerouslySetInnerHTML={{ __html: question.paragraph }}
+              />
+            )}
             <div
               className="text-lg leading-relaxed text-foreground [&>img]:max-w-full [&>img]:rounded-lg [&>img]:border [&>img]:border-border [&>p]:mb-4"
               dangerouslySetInnerHTML={{ __html: question.name }}
@@ -371,42 +377,44 @@ export const QuestionView: React.FC<QuestionViewProps> = ({
             </h3>
 
             {question.type === "multiple_choice" ? (
-              <div className="grid grid-cols-1 gap-4">
-                {question.options.map((opt, idx) => (
-                  <div key={opt._id} className={getOptionClass(opt)}>
-                    <div className="flex-shrink-0 mt-0.5">
-                      <div
-                        className={cn(
-                          "w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold border",
-                          opt.isCorrect
-                            ? "bg-emerald-500 border-emerald-600 text-white"
-                            : opt.isMarked
-                              ? "bg-rose-500 border-rose-600 text-white"
-                              : "bg-secondary border-border text-muted-foreground group-hover:border-primary/50",
-                        )}
-                      >
-                        {String.fromCharCode(65 + idx)}
-                      </div>
-                    </div>
-                    <div className="flex-1">
-                      <div
-                        className="prose dark:prose-invert max-w-none [&>p]:m-0 [&>img]:align-middle"
-                        dangerouslySetInnerHTML={{ __html: opt.name }}
-                      />
-                    </div>
-                    {opt.isMarked && (
-                      <div className="absolute -top-2.5 right-4">
-                        <Badge
-                          variant={opt.isCorrect ? "success" : "destructive"}
-                          className="shadow-sm border"
+              <>
+                <div className="grid grid-cols-1 gap-4">
+                  {question.options.map((opt, idx) => (
+                    <div key={opt._id} className={getOptionClass(opt)}>
+                      <div className="flex-shrink-0 mt-0.5">
+                        <div
+                          className={cn(
+                            "w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold border",
+                            opt.isCorrect
+                              ? "bg-emerald-500 border-emerald-600 text-white"
+                              : opt.isMarked
+                                ? "bg-rose-500 border-rose-600 text-white"
+                                : "bg-secondary border-border text-muted-foreground group-hover:border-primary/50",
+                          )}
                         >
-                          Your Answer
-                        </Badge>
+                          {String.fromCharCode(65 + idx)}
+                        </div>
                       </div>
-                    )}
-                  </div>
-                ))}
-              </div>
+                      <div className="flex-1">
+                        <div
+                          className="prose dark:prose-invert max-w-none [&>p]:m-0 [&>img]:align-middle"
+                          dangerouslySetInnerHTML={{ __html: opt.name }}
+                        />
+                      </div>
+                      {opt.isMarked && (
+                        <div className="absolute -top-2.5 right-4">
+                          <Badge
+                            variant={opt.isCorrect ? "success" : "destructive"}
+                            className="shadow-sm border"
+                          >
+                            Your Answer
+                          </Badge>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </>
             ) : (
               <div className="bg-card border border-border rounded-lg p-6 flex flex-col gap-4">
                 {/* Integer Type Display */}
