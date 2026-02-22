@@ -4,6 +4,7 @@ import module_2 from './tests/module_2.json';
 import module_3 from './tests/module_3.json';
 import module_4 from './tests/module_4.json';
 import fulltest_1 from './tests/fulltest_1.json';
+import fulltest_2_p1 from './tests/fulltest_2_p1.json';
 
 export const TESTS: TestMetadata[] = [
   { id: '1', name: 'Module 1', fileName: 'module_1.json' },
@@ -11,6 +12,7 @@ export const TESTS: TestMetadata[] = [
   { id: '3', name: 'Module 3', fileName: 'module_3.json' },
   { id: '4', name: 'Full test 1', fileName: 'fulltest_1.json' },
   { id: '5', name: 'Module 4', fileName: 'module_4.json' },
+  { id: '6', name: 'Full test 2 - P1', fileName: 'fulltest_2_p1.json' },
 ];
 
 export const MOCK_TEST_DATA: Record<string, TestData> = {
@@ -18,5 +20,6 @@ export const MOCK_TEST_DATA: Record<string, TestData> = {
   'module_2.json': module_2 as TestData,
   'module_3.json': module_3 as TestData,
   'fulltest_1.json': fulltest_1 as TestData,
-  'module_4.json': module_4 as TestData
+  'module_4.json': module_4 as TestData,
+  'fulltest_2_p1.json': fulltest_2_p1 as TestData
 };
